@@ -1,2 +1,5 @@
-2024/06/29-12:12:12.351 1070f Creating DB /Users/yashshah/Desktop/kk/temp/Default/Extension Rules since it was missing.
-2024/06/29-12:12:12.351 1070f Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/Extension Rules/MANIFEST-000001
+2024/07/12-13:41:21.514 325e2 Recovering log #273
+2024/07/12-13:41:21.515 325e2 Level-0 table #275: started
+2024/07/12-13:41:21.515 325e2 Level-0 table #275: 0 bytes OK
+2024/07/12-13:41:21.519 325e2 Delete type=0 #273
+2024/07/12-13:41:21.519 325e2 Delete type=3 #271

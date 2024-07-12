@@ -1,3 +1,5 @@
-2024/06/29-12:21:57.075 b703 Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/Session Storage/MANIFEST-000001
-2024/06/29-12:21:57.075 b703 Recovering log #3
-2024/06/29-12:21:57.075 b703 Reusing old log /Users/yashshah/Desktop/kk/temp/Default/Session Storage/000003.log 
+2024/07/12-13:40:29.521 3256c Recovering log #292
+2024/07/12-13:40:29.521 3256c Level-0 table #294: started
+2024/07/12-13:40:29.523 3256c Level-0 table #294: 476 bytes OK
+2024/07/12-13:40:29.529 3256c Delete type=0 #292
+2024/07/12-13:40:29.529 3256c Delete type=3 #290

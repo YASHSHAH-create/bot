@@ -1,0 +1,171 @@
+.news-section {
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.chat-section {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+.chat-input {
+    display: flex;
+}
+
+.chat-input input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.incoming-message {
+    text-align: left;
+}
+
+.outgoing-message {
+    text-align: right;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    display: inline-block;
+}
+
+.incoming-message .message {
+    background-color: #f1f0f0;
+}
+
+.outgoing-message .message {
+    background-color: #007bff;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .news-section {
+        display: none;
+    }
+
+    .floating-button {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .chat-section {
+        height: calc(100vh - 40px);
+    }
+}
+
+.floating-button {
+    display: none;
+}
+
+@media (min-width: 992px) {
+
+    /* Adjust the breakpoint as needed */
+    .hide-on-desktop {
+        display: none !important;
+    }
+
+    #headingOne {
+        display: none !important;
+    }
+}
+
+/* Basic styling for chat messages */
+.chat-messages {
+    background-image: url('whatsapp-background.jpg');
+    /* Replace with your WhatsApp-like background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    /* Adjust height as needed */
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    max-width: 70%;
+    /* Limit message width for better readability */
+    clear: both;
+}
+
+.outgoing-message .message-content {
+    background-color: #dcf8c6;
+    /* Outgoing message background color */
+}
+
+.incoming-message .message-content {
+    background-color: #fff;
+    /* Incoming message background color */
+}
+
+/* Floating button style */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Accordion style for mobile view */
+#accordionNews {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .hide-on-desktop {
+        display: none;
+    }
+}.incoming-message {
+    clear: both;
+    max-width: 100%;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.incoming-message .message-content {
+    background-color: #007bff !important; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 10px;
+    border-radius: 10px;
+    float: right; /* Float right for incoming messages */
+    max-width: 70%; /* Limit message width for better readability */
+    clear: both;
+}
+#bbt{
+    width: 100%;
+}  .news-accordion-body {
+    max-height: 80vh; /* Adjust as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* Avoid width issue due to scrollbar */
+}

@@ -1,3 +1,5 @@
-2024/06/29-12:22:29.098 10a03 Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/IndexedDB/https_x.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/06/29-12:22:29.098 10a03 Recovering log #3
-2024/06/29-12:22:29.098 10a03 Reusing old log /Users/yashshah/Desktop/kk/temp/Default/IndexedDB/https_x.com_0.indexeddb.leveldb/000003.log 
+2024/07/12-13:41:22.956 325da Recovering log #295
+2024/07/12-13:41:22.956 325da Level-0 table #297: started
+2024/07/12-13:41:22.958 325da Level-0 table #297: 8902 bytes OK
+2024/07/12-13:41:22.964 325da Delete type=0 #295
+2024/07/12-13:41:22.964 325da Delete type=3 #293

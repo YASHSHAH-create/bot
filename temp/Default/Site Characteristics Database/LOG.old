@@ -1,3 +1,5 @@
-2024/06/29-12:21:57.012 11703 Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/Site Characteristics Database/MANIFEST-000001
-2024/06/29-12:21:57.012 11703 Recovering log #3
-2024/06/29-12:21:57.012 11703 Reusing old log /Users/yashshah/Desktop/kk/temp/Default/Site Characteristics Database/000003.log 
+2024/07/12-13:40:29.314 3254a Recovering log #275
+2024/07/12-13:40:29.314 3254a Level-0 table #278: started
+2024/07/12-13:40:29.316 3254a Level-0 table #278: 162 bytes OK
+2024/07/12-13:40:29.322 3254a Delete type=0 #275
+2024/07/12-13:40:29.322 3254a Delete type=3 #273

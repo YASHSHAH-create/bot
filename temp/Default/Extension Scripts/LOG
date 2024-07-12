@@ -1,2 +1,5 @@
-2024/06/29-12:12:12.352 1070f Creating DB /Users/yashshah/Desktop/kk/temp/Default/Extension Scripts since it was missing.
-2024/06/29-12:12:12.352 1070f Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/Extension Scripts/MANIFEST-000001
+2024/07/12-13:41:21.521 325e2 Recovering log #273
+2024/07/12-13:41:21.522 325e2 Level-0 table #275: started
+2024/07/12-13:41:21.522 325e2 Level-0 table #275: 0 bytes OK
+2024/07/12-13:41:21.526 325e2 Delete type=0 #273
+2024/07/12-13:41:21.526 325e2 Delete type=3 #271

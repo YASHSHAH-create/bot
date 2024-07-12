@@ -1,3 +1,5 @@
-2024/06/29-12:22:22.086 8a03 Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/shared_proto_db/MANIFEST-000001
-2024/06/29-12:22:22.086 8a03 Recovering log #3
-2024/06/29-12:22:22.086 8a03 Reusing old log /Users/yashshah/Desktop/kk/temp/Default/shared_proto_db/000003.log 
+2024/07/12-13:41:21.756 325ce Recovering log #295
+2024/07/12-13:41:21.756 325ce Level-0 table #297: started
+2024/07/12-13:41:21.758 325ce Level-0 table #297: 2158 bytes OK
+2024/07/12-13:41:21.762 325ce Delete type=0 #295
+2024/07/12-13:41:21.762 325ce Delete type=3 #293

@@ -1,3 +1,5 @@
-2024/06/29-12:22:16.882 10a03 Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/Service Worker/Database/MANIFEST-000001
-2024/06/29-12:22:16.883 10a03 Recovering log #3
-2024/06/29-12:22:16.883 10a03 Reusing old log /Users/yashshah/Desktop/kk/temp/Default/Service Worker/Database/000003.log 
+2024/07/12-13:41:21.489 325d1 Recovering log #282
+2024/07/12-13:41:21.489 325d1 Level-0 table #285: started
+2024/07/12-13:41:21.492 325d1 Level-0 table #285: 319 bytes OK
+2024/07/12-13:41:21.497 325d1 Delete type=0 #282
+2024/07/12-13:41:21.497 325d1 Delete type=3 #280

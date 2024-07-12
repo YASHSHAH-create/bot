@@ -1,3 +1,5 @@
-2024/06/29-12:22:27.224 d307 Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/Extension State/MANIFEST-000001
-2024/06/29-12:22:27.224 d307 Recovering log #3
-2024/06/29-12:22:27.224 d307 Reusing old log /Users/yashshah/Desktop/kk/temp/Default/Extension State/000003.log 
+2024/07/12-13:41:21.866 325fc Recovering log #273
+2024/07/12-13:41:21.867 325fc Level-0 table #275: started
+2024/07/12-13:41:21.867 325fc Level-0 table #275: 0 bytes OK
+2024/07/12-13:41:21.871 325fc Delete type=0 #273
+2024/07/12-13:41:21.871 325fc Delete type=3 #271

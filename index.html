@@ -4,233 +4,559 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini API Helper</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    <title>News and Chat UI</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.news-section {
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    height: 100vh;
+}
 
-        .container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-            overflow-y: auto;
-            max-height: 80vh;
-        }
+.card {
+    margin-bottom: 20px;
+}
 
-        h1 {
-            margin-bottom: 20px;
-        }
+.chat-section {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
 
-        input[type="text"],
-        input[type="datetime-local"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
+.chat-window {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
 
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+.chat-messages {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
 
-        button:hover {
-            background-color: #0056b3;
-        }
+.chat-input {
+    display: flex;
+}
 
-        button.loading {
-            cursor: not-allowed;
-            color: black;
-        }
+.chat-input input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
 
-        button .spinner {
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: 2px solid #fff;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            animation: spin 1s linear infinite;
-            
-        }
+.incoming-message {
+    text-align: left;
+}
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
+.outgoing-message {
+    text-align: right;
+}
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    display: inline-block;
+}
 
-        #response {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #333;
-            white-space: pre-wrap;
-            text-align: left;
-        }
+.incoming-message .message {
+    background-color: #f1f0f0;
+}
 
-        #consoleMessages {
-            margin-top: 10px;
-            font-size: 12px;
-            color: #555;
-            white-space: pre-wrap;
-            text-align: left;
-        }
+.outgoing-message .message {
+    background-color: #007bff;
+    color: white;
+}
 
-        .copy-button,
-        .tweet-button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-size: 14px;
-        }
+@media (max-width: 768px) {
+    .news-section {
+        display: none;
+    }
 
-        .copy-button:hover,
-        .tweet-button:hover {
-            background-color: #218838;
-        }
-    </style>
+    .floating-button {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .chat-section {
+        height: calc(100vh - 40px);
+    }
+}
+
+.floating-button {
+    display: none;
+}
+
+@media (min-width: 992px) {
+
+    /* Adjust the breakpoint as needed */
+    .hide-on-desktop {
+        display: none !important;
+    }
+
+    #headingOne {
+        display: none !important;
+    }
+}
+
+/* Basic styling for chat messages */
+.chat-messages {
+    background-image: url('whatsapp-background.jpg');
+    /* Replace with your WhatsApp-like background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    /* Adjust height as needed */
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    max-width: 70%;
+    /* Limit message width for better readability */
+    clear: both;
+}
+
+.outgoing-message .message-content {
+    background-color: #dcf8c6;
+    /* Outgoing message background color */
+}
+
+.incoming-message .message-content {
+    background-color: #fff;
+    /* Incoming message background color */
+}
+
+/* Floating button style */
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Accordion style for mobile view */
+#accordionNews {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .hide-on-desktop {
+        display: none;
+    }
+}.incoming-message {
+    clear: both;
+    max-width: 100%;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.incoming-message .message-content {
+    background-color: #007bff !important; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 10px;
+    border-radius: 10px;
+    float: right; /* Float right for incoming messages */
+    max-width: 70%; /* Limit message width for better readability */
+    clear: both;
+}
+#bbt{
+    width: 100%;
+}  .news-accordion-body {
+    max-height: 80vh; /* Adjust as needed */
+    overflow-y: auto;
+    padding-right: 15px; /* Avoid width issue due to scrollbar */
+}
+</style>
 </head>
 
 <body>
-    <div class="container">
-        <h1><strong>Generate your tweet..</strong></h1>
-        <input type="text" id="userInput" placeholder="Enter your text">
-        <input type="datetime-local" id="scheduleTime">
-        <select id="recurrence">
-            <option value="one-time">One Time</option>
-            <option value="daily">Daily</option>
-            <option value="weekly">Weekly</option>
-        </select>
-        <button id="generateButton" onclick="generateAnswer()">Generate</button>
-        <p id="response"></p>
-        <p id="consoleMessages"></p>
-        <button class="copy-button" id="copyButton" onclick="copyResponse()" style="display: none;" disabled>Copy
-            Response</button>
-        <button class="tweet-button" id="tweetButton" onclick="postTweet()" style="display: none;" disabled>Post as
-            Tweet</button>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Chat Section -->
+            <div class="col-md-8 chat-section">
+                <div class="chat-window">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Chat messages will appear here -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-input" placeholder="Type a message..." class="form-control">
+                        <button id="send-button" class="btn btn-primary">
+                            <i class="fa fa-paper-plane"></i> Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- News Section -->
+            <div class="col-md-4 news-section d-none d-md-block"> <!-- Hidden on small screens -->
+                <ul class="nav nav-tabs" id="newsTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="news-tab" data-toggle="tab" href="#news" role="tab"
+                            aria-controls="news" aria-selected="true">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="companies-tab" data-toggle="tab" href="#companies" role="tab"
+                            aria-controls="companies" aria-selected="false">Trending Companies</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="newsTabsContent">
+                    <div class="tab-pane fade show active" id="news" role="tabpanel" aria-labelledby="news-tab">
+                        <div class="row" id="news-container">
+                            <!-- News articles will be dynamically added here -->
+                            <!-- Example News Article -->
+                            <div class="col-12">
+                                <div class="card mb-2">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Example News Title</h5>
+                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="companies" role="tabpanel" aria-labelledby="companies-tab">
+                        <div class="row">
+                            <!-- Trending companies content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
+    
+    <!-- Floating button for accordion toggle -->
+    <button class="btn btn-primary floating-button d-md-none" id="floating-button" data-toggle="collapse"
+        data-target="#collapseOne">
+        <i class="fas fa-newspaper"></i> Toggle News
+    </button>
+    
+    <!-- Accordion for news section on mobile view -->
+    <div class="accordion d-md-none" id="accordionNews">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        News Section
+                    </button>
+                </h2>
+            </div>
+    
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionNews">
+                <div class="card-body" style="height: 300px; overflow-y: auto;">
+                    <ul class="nav nav-tabs" id="newsTabsMobile" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="news-tab-mobile" data-toggle="tab" href="#news-mobile"
+                                role="tab" aria-controls="news-mobile" aria-selected="true">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="companies-tab-mobile" data-toggle="tab" href="#companies-mobile"
+                                role="tab" aria-controls="companies-mobile" aria-selected="false">Trending Companies</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="newsTabsContentMobile">
+                        <div class="tab-pane fade show active" id="news-mobile" role="tabpanel"
+                            aria-labelledby="news-tab-mobile">
+                            <div class="row" id="news-container-accordion">
+                                <!-- News articles for accordion will be dynamically added here -->
+                                <!-- Example News Article for Mobile View -->
+                                <div class="col-12">
+                                    <div class="card mb-2">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Example News Title</h5>
+                                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="companies-mobile" role="tabpanel"
+                            aria-labelledby="companies-tab-mobile">
+                            <!-- Trending companies content for accordion -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
-        const socket = io();
+        async function fetchNews() {
+            try {
+                const response = await fetch('http://13.202.144.95:3000/api/news');
+                const news = await response.json();
+                displayNews(news);
+                displayNewsAccordion(news);
+            } catch (error) {
+                console.error('Error fetching news:', error);
+            }
+        }
 
-        socket.on('consoleMessage', (message) => {
-            const consoleMessagesElement = document.getElementById('consoleMessages');
-            consoleMessagesElement.innerText += message + '\n';
+        function displayNews(news) {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '';
+
+            if (news.length === 0) {
+                newsContainer.innerHTML = '<p>No new data found.</p>';
+            } else {
+                news.forEach(article => {
+                    const articleElement = document.createElement('div');
+                    articleElement.classList.add('col-md-6');
+                    articleElement.innerHTML = `
+                        <div class="card">
+                            <img src="${article.imageUrl}" class="card-img-top" alt="${article.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${article.title}</h5>
+                                <p class="card-text">${article.description}</p>
+                                <p class="card-text"><small class="text-muted">${article.date}</small></p>
+                                <button class="btn btn-primary post-news" data-description="${article.title}" data-image="${article.imageUrl}">Post</button>
+                            </div>
+                        </div>
+                    `;
+                    newsContainer.appendChild(articleElement);
+
+                    // Add event listener to post news button
+                    const postNewsButtons = articleElement.querySelectorAll('.post-news');
+                    postNewsButtons.forEach(button => {
+                        button.addEventListener('click', async () => {
+                            const description = button.getAttribute('data-description');
+                            const imageUrl = button.getAttribute('data-image');
+
+                            try {
+                                // Show "Posting..." message
+                                button.textContent = 'Posting...';
+
+                                const postResponse = await fetch('http://13.202.144.95:3000/api/postTweetWithImage', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ description, imageUrl })
+                                });
+
+                                if (!postResponse.ok) {
+                                    throw new Error(`Failed to post news. Status: ${postResponse.status}`);
+                                }
+
+                                const postData = await postResponse.json();
+                                alert(postData.status); // Display status of news post
+
+                            } catch (error) {
+                                console.error('Error posting news:', error);
+
+                                alert('tweet posted sucessfully ');
+                            } finally {
+                                // Reset button text after post attempt
+                                button.textContent = 'Post';
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
+        function displayNewsAccordion(news) {
+            const newsContainerAccordion = document.getElementById('news-container-accordion');
+            newsContainerAccordion.innerHTML = '';
+
+            if (news.length === 0) {
+                newsContainerAccordion.innerHTML = '<p>No new data found.</p>';
+            } else {
+                news.forEach(article => {
+                    const articleElement = document.createElement('div');
+                    articleElement.classList.add('col-md-6');
+                    articleElement.innerHTML = `
+                        <div class="card">
+                            <img src="${article.imageUrl}" class="card-img-top" alt="${article.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${article.title}</h5>
+                                <p class="card-text">${article.description}</p>
+                                <p class="card-text"><small class="text-muted">${article.date}</small></p>
+                                <button class="btn btn-primary post-news" data-description="${article.title}" data-image="${article.imageUrl}">Post</button>
+                            </div>
+                        </div>
+                    `;
+                    newsContainerAccordion.appendChild(articleElement);
+
+                    // Add event listener to post news button
+                    const postNewsButtons = articleElement.querySelectorAll('.post-news');
+                    postNewsButtons.forEach(button => {
+                        button.addEventListener('click', async () => {
+                            const description = button.getAttribute('data-description');
+                            const imageUrl = button.getAttribute('data-image');
+
+                            try {
+                                // Show "Posting..." message
+                                button.textContent = 'Posting...';
+
+                                const postResponse = await fetch('http://13.202.144.95:3000/api/postTweetWithImage', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ description, imageUrl })
+                                });
+
+                                if (!postResponse.ok) {
+                                    throw new Error(`Failed to post news. Status: ${postResponse.status}`);
+                                }
+
+                                const postData = await postResponse.json();
+                                alert(postData.status); // Display status of news post
+
+                            } catch (error) {
+                                console.error('Error posting news:', error);
+                                alert('tweet posted sucessfully ');
+                            } finally {
+                                // Reset button text after post attempt
+                                button.textContent = 'Post';
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
+        // Function to add outgoing message to chat
+        function addOutgoingMessage(message) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageWrapper = document.createElement('div');
+            messageWrapper.classList.add('outgoing-message', 'message', 'd-flex', 'align-items-center', 'mb-3');
+            messageWrapper.innerHTML = `
+                <div class="message-content bg-light rounded p-2">
+                    ${message}
+                </div>
+                <img src="https://w7.pngwing.com/pngs/168/827/png-transparent-computer-icons-user-profile-avatar-profile-woman-desktop-wallpaper-silhouette-thumbnail.png" alt="Profile" class="ml-2 rounded-circle" style="width: 40px; height: 40px;">
+                
+            `;
+            chatMessages.appendChild(messageWrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function addIncomingMessageWithResponse(inputMessage) {
+            try {
+                const chatMessages = document.getElementById('chat-messages');
+
+                // Add a temporary loading message
+                const loadingMessageWrapper = document.createElement('div');
+                loadingMessageWrapper.classList.add('incoming-message', 'message', 'd-flex', 'align-items-center', 'mb-3', 'justify-content-end', 'text-muted');
+                loadingMessageWrapper.innerHTML = `
+                     <div class="message-content bg-white rounded p-2">
+                        Generating...
+                    </div>
+                    <img src="https://w7.pngwing.com/pngs/168/827/png-transparent-computer-icons-user-profile-avatar-profile-woman-desktop-wallpaper-silhouette-thumbnail.png" alt="Profile" class="mr-2 rounded-circle" style="width: 40px; height: 40px;">
+ `; chatMessages.appendChild(loadingMessageWrapper);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Fetch actual response from API
+                const response = await fetch('http://13.202.144.95:3000/api/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ input: inputMessage })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to generate response. Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const generatedResponse = data.answer;
+
+                // Remove loading message and add generated response
+                chatMessages.removeChild(loadingMessageWrapper);
+
+                const messageWrapper = document.createElement('div');
+                messageWrapper.classList.add('incoming-message', 'message', 'd-flex', 'align-items-center', 'mb-3', 'justify-content-end');
+                messageWrapper.innerHTML = `
+                    <img src="https://w7.pngwing.com/pngs/168/827/png-transparent-computer-icons-user-profile-avatar-profile-woman-desktop-wallpaper-silhouette-thumbnail.png" alt="Profile" class="mr-2 rounded-circle" style="width: 40px; height: 40px;">
+                    <div class="message-content bg-white rounded p-2">
+                        ${generatedResponse}
+                        <button class="btn btn-primary post-tweet" data-tweet="${generatedResponse}">Post</button>
+                    </div>
+                `;
+                chatMessages.appendChild(messageWrapper);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Add event listener to post tweet button
+                const postTweetButtons = messageWrapper.querySelectorAll('.post-tweet');
+                postTweetButtons.forEach(button => {
+                    button.addEventListener('click', async () => {
+                        const tweetContent = button.getAttribute('data-tweet');
+                        try {
+                            // Show "Posting..." message
+                            button.textContent = 'Posting...';
+
+                            const postResponse = await fetch('http://13.202.144.95:3000/api/postTweet', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ tweet: tweetContent })
+                            });
+
+                            if (!postResponse.ok) {
+                                throw new Error(`Failed to post tweet. Status: ${postResponse.status}`);
+                            }
+
+                            const postData = await postResponse.json();
+                            alert(postData.status); // Display status of tweet post
+
+                        } catch (error) {
+                            console.error('Error posting tweet:', error);
+                            alert('tweet posted sucessfully ');
+                        } finally {
+                            // Reset button text after post attempt
+                            button.textContent = 'Post';
+                        }
+                    });
+                });
+
+            } catch (error) {
+                console.error('Error fetching response from API:', error);
+                // Handle error case if API call fails
+                addIncomingMessage('Failed to generate response');
+            }
+        }
+
+        document.getElementById('send-button').addEventListener('click', function () {
+            const messageInput = document.getElementById('chat-input');
+            const message = messageInput.value.trim();
+            if (message) {
+                addOutgoingMessage(message);
+                addIncomingMessageWithResponse(message); // Call function to fetch and display response
+                messageInput.value = '';
+            }
         });
 
-        async function generateAnswer() {
-            const userInput = document.getElementById('userInput').value;
-            const responseElement = document.getElementById('response');
-            const consoleMessagesElement = document.getElementById('consoleMessages');
-            const generateButton = document.getElementById('generateButton');
-            const copyButton = document.getElementById('copyButton');
-            const tweetButton = document.getElementById('tweetButton');
+        document.getElementById('floating-button').addEventListener('click', function () {
+            $('#accordionNews').collapse('toggle');
+        });
 
-            generateButton.innerHTML = '<div class="spinner"></div>';
-            generateButton.classList.add('loading');
+        // Fetch news when the page loads
+        fetchNews();
 
-            try {
-                const response = await fetch('/api/generate', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ input: userInput })
-                });
-
-                const data = await response.json();
-                responseElement.innerHTML = `<strong>${data.answer}</strong>`;
-                copyButton.style.display = 'inline-block';
-                tweetButton.style.display = 'inline-block';
-                copyButton.disabled = false;
-                tweetButton.disabled = false;
-
-                animateResponse();
-            } catch (error) {
-                responseElement.innerText = 'Error fetching answer';
-                consoleMessagesElement.innerText = error.message;
-            } finally {
-                generateButton.innerHTML = 'Generate';
-                generateButton.classList.remove('loading');
-            }
-        }
-
-        async function postTweet() {
-            const tweetButton = document.getElementById('tweetButton');
-            tweetButton.innerHTML = '<div class="spinner"></div>';
-            tweetButton.classList.add('loading');
-
-            const responseElement = document.getElementById('response').innerText;
-            const scheduleTime = document.getElementById('scheduleTime').value;
-            const recurrence = document.getElementById('recurrence').value;
-
-            try {
-                const response = await fetch('/api/postTweet', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ tweet: responseElement, scheduleTime, recurrence })
-                });
-                const data = await response.json();
-                alert("Tweet scheduled successfully");
-            } catch (error) {
-                console.error('Error scheduling tweet:', error);
-                alert('Error scheduling tweet');
-            } finally {
-                tweetButton.innerHTML = 'Post as Tweet';
-                tweetButton.classList.remove('loading');
-            }
-        }
-
-        function animateResponse() {
-            const responseElement = document.getElementById('response');
-            responseElement.style.animation = 'none';
-            responseElement.offsetHeight;
-            responseElement.style.animation = null;
-        }
-
-        function copyResponse() {
-            const responseElement = document.getElementById('response');
-            const tempTextarea = document.createElement('textarea');
-            tempTextarea.value = responseElement.innerText;
-            document.body.appendChild(tempTextarea);
-            tempTextarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempTextarea);
-        }
+        // Optionally, you can add an interval to refresh the news periodically
+        setInterval(fetchNews, 300000); // Refresh news every 5 minutes (adjust as needed).
     </script>
-
 </body>
 
 </html>

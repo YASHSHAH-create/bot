@@ -1,3 +1,5 @@
-2024/06/29-12:21:57.010 ef03 Reusing MANIFEST /Users/yashshah/Desktop/kk/temp/Default/Local Storage/leveldb/MANIFEST-000001
-2024/06/29-12:21:57.010 ef03 Recovering log #3
-2024/06/29-12:21:57.010 ef03 Reusing old log /Users/yashshah/Desktop/kk/temp/Default/Local Storage/leveldb/000003.log 
+2024/07/12-13:40:29.496 3256a Recovering log #292
+2024/07/12-13:40:29.507 3256a Level-0 table #294: started
+2024/07/12-13:40:29.509 3256a Level-0 table #294: 172 bytes OK
+2024/07/12-13:40:29.516 3256a Delete type=0 #292
+2024/07/12-13:40:29.516 3256a Delete type=3 #290
