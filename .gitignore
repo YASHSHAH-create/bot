@@ -1,3 +1,5 @@
-
-# Ignore node_modules directory
 node_modules/
+google-chrome-stable_current_x86_64.rpm
+public/
+temp/
+google-chrome-stable_current_x86_64.rpm
